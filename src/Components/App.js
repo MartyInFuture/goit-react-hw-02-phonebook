@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
+import Phonebook from './phonebook/Phonebook';
 import Contacts from './contacts/Contacts';
 
 class App extends Component {
@@ -13,6 +13,11 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    if (this.state.contacts.find((item) => item.name === this.state.name)) {
+      alert('User alredy exist!');
+      return false;
+    }
+
     this.setState({
       contacts: [
         ...this.state.contacts,
@@ -48,29 +53,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h2>Phonebook</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor={this.state.inputId}>Name</label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="name"
-            id={this.state.inputId}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
-          />
-          <label htmlFor={this.state.phoneInputId}>Phone</label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="phone"
-            id={this.state.phoneInputId}
-            required
-          />
-          <button type="submit">Add contact</button>
-        </form>
-
+        <Phonebook
+          handleSubmit={this.handleSubmit}
+          inputId={this.state.inputId}
+          handleChange={this.handleChange}
+          phoneInputId={this.state.phoneInputId}
+        />
         <Contacts
           contacts={this.state.contacts}
           onSearch={this.onSearch}
