@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Phonebook from './phonebook/Phonebook';
 import Contacts from './contacts/Contacts';
+import Search from './search/Search';
 
 const INITIAL_STATE = {
   phone: '',
@@ -21,7 +22,7 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.contacts.find((item) => item.name === this.state.name)) {
-      alert('User alredy exist!');
+      alert(`User with name ${this.state.name} alredy exist!`);
       return false;
     }
 
@@ -68,9 +69,11 @@ class App extends Component {
           phone={this.state.phone}
           name={this.state.name}
         />
+        <h2>Contacts</h2>
+
+        <Search onSearch={this.onSearch} contacts={this.state.contacts} />
         <Contacts
           contacts={this.state.contacts}
-          onSearch={this.onSearch}
           search={this.state.search}
           deleteItem={this.deleteItem}
         />
