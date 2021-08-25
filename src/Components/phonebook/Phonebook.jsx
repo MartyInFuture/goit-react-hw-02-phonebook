@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { PhonebookStyled } from './PhonebookStyled';
 
 const Phonebook = ({ handleSubmit, inputId, handleChange, phoneInputId }) => {
@@ -30,3 +32,10 @@ const Phonebook = ({ handleSubmit, inputId, handleChange, phoneInputId }) => {
 };
 
 export default Phonebook;
+
+Phonebook.propTypes = {
+  handleSubmit: PropTypes.func,
+  inputId: PropTypes.string,
+  handleChange: PropTypes.func,
+  phoneInputId: PropTypes.string,
+};

@@ -1,5 +1,6 @@
 import ContactsList from './contactsList/ContactsList';
 import { ContactsStyled } from './ContactsStyled';
+import PropTypes from 'prop-types';
 
 const Contacts = ({ contacts, onSearch, search, deleteItem }) => {
   return (
@@ -23,3 +24,10 @@ const Contacts = ({ contacts, onSearch, search, deleteItem }) => {
 };
 
 export default Contacts;
+
+Contacts.propTypes = {
+  contacts: PropTypes.array,
+  onSearch: PropTypes.func,
+  search: PropTypes.string,
+  deleteItem: PropTypes.func,
+};
