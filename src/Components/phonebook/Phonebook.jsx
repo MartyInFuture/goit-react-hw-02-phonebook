@@ -2,7 +2,14 @@ import PropTypes from 'prop-types';
 
 import { PhonebookStyled } from './PhonebookStyled';
 
-const Phonebook = ({ handleSubmit, inputId, handleChange, phoneInputId }) => {
+const Phonebook = ({
+  handleSubmit,
+  inputId,
+  handleChange,
+  phoneInputId,
+  phone,
+  name,
+}) => {
   return (
     <PhonebookStyled>
       <h2>Phonebook</h2>
@@ -12,6 +19,7 @@ const Phonebook = ({ handleSubmit, inputId, handleChange, phoneInputId }) => {
           onChange={handleChange}
           type="text"
           name="name"
+          value={name}
           id={inputId}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
@@ -23,6 +31,7 @@ const Phonebook = ({ handleSubmit, inputId, handleChange, phoneInputId }) => {
           type="text"
           name="phone"
           id={phoneInputId}
+          value={phone}
           required
         />
         <button type="submit">Add contact</button>
@@ -38,4 +47,6 @@ Phonebook.propTypes = {
   inputId: PropTypes.string,
   handleChange: PropTypes.func,
   phoneInputId: PropTypes.string,
+  phone: PropTypes.string,
+  name: PropTypes.string,
 };

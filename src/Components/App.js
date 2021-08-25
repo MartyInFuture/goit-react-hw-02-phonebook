@@ -3,12 +3,19 @@ import { v4 as uuidv4 } from 'uuid';
 import Phonebook from './phonebook/Phonebook';
 import Contacts from './contacts/Contacts';
 
+const INITIAL_STATE = {
+  phone: '',
+  name: '',
+};
+
 class App extends Component {
   state = {
     contacts: [],
     inputId: uuidv4(),
     phoneInputId: uuidv4(),
     search: '',
+    name: '',
+    phone: '',
   };
 
   handleSubmit = (e) => {
@@ -23,8 +30,8 @@ class App extends Component {
         ...this.state.contacts,
         { name: this.state.name, id: uuidv4(), phone: this.state.phone },
       ],
+      ...INITIAL_STATE,
     });
-    e.target.reset();
   };
 
   handleChange = (e) => {
@@ -58,6 +65,8 @@ class App extends Component {
           inputId={this.state.inputId}
           handleChange={this.handleChange}
           phoneInputId={this.state.phoneInputId}
+          phone={this.state.phone}
+          name={this.state.name}
         />
         <Contacts
           contacts={this.state.contacts}
